@@ -3,7 +3,7 @@
 void setup() {
     for (int i = 0; i < 6; i++) {
         pinMode(inPins[i], INPUT_PULLUP);
-        if (i < 2)) {
+        if (i < 2) {
             pinMode(outPins[i], OUTPUT);
         }
     }
@@ -12,5 +12,5 @@ void setup() {
 }
 
 void loop() {
-    channelCheck(dipCheck);
+    channelCheck(dipCheck());
 }
