@@ -2,18 +2,16 @@
 #define _HF_
 #include "Arduino.h"
 
-extern const int inPins[6];
+extern const int inPins[7];
 extern const int outPins[2];
 
 extern byte previousState;
 
-extern const byte inChannels[4];
-
 extern const byte pinMask[3];
 
-void channelCheck(int dipChan);
+void channelCheck();
 
-int dipCheck();
+byte dipCheck();
 
 void setup();
 void loop();

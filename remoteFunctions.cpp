@@ -1,42 +1,51 @@
 #include "remoteFunctions.h"
 
-const int inPins[6] = {2, 3, 4, 5, 6, 7};
-const int outPins[2] = {8, 9};
+const int inPins[7] = {2, 3, 9, 4, 5, 6, 7};
+const int outPins[2] = {8, 10};
 
-byte previousState = 0b00;
-
-const byte inChannels[4] = {
-    0b00, 0b01, 0b10, 0b11
-};
+byte previousState = 0b000;
 
 const byte pinMask[3] = {
-    0b01, 0b10, 0b00
+    0b001, 0b010, 0b100
 };
 
-int dipCheck() {
-    for (int i = 2; i < 6; i++) {
-        if (digitalRead(inPins[i]) == LOW) {
-            return (i - 2);
+byte dipCheck() {
+    byte dipChan = 0b000;
+    for (int i = 0; i < 3; i++) {
+        if (digitalRead(inPins[i + 3]) == LOW) {
+            dipChan |= pinMask[i];
         }
     }
+    Serial.print("\ndipCheck return: ");
+    Serial.print(dipChan, BIN);
+    return (dipChan);
 }
 
-void channelCheck(int dipChan) {
-    byte pinState = 0b00;
-    for (int i = 0; i < 2; i++) {
+void channelCheck() {
+    byte dipChan = dipCheck();
+    byte pinState = 0b000;
+    for (int i = 0; i < 3; i++) {
         if (digitalRead(inPins[i] == LOW)) {
             pinState |= pinMask[i];
         }
     }
-    if (pinState == inChannels[dipChan]) {
+    Serial.print("\nCurrent pinState: ");
+    Serial.print(pinState, BIN);
+    Serial.print("\n");
+    if (pinState == dipChan) {
         if (pinState != previousState) {
             previousState = pinState;
             digitalWrite(outPins[0], HIGH);
             digitalWrite(outPins[1], LOW);
+            Serial.print("LED On\n");
         }
     }
-    else if (pinState != inChannels[dipChan]) {
-        digitalWrite(outPins[0], LOW);
-        digitalWrite(outPins[1], HIGH);
+    else if (pinState != dipChan) {
+        if (pinState != previousState) {
+            previousState = pinState;
+            digitalWrite(outPins[0], LOW);
+            digitalWrite(outPins[1], HIGH);
+            Serial.print("LED Off\n");
+        }
     }
 }
