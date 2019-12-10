@@ -18,16 +18,30 @@ byte dipCheck() {
     }
     Serial.print("\ndipCheck return: ");
     Serial.print(dipChan, BIN);
+    Serial.print("\n");
     return (dipChan);
 }
 
 void channelCheck() {
     byte dipChan = dipCheck();
     byte pinState = 0b000;
+    Serial.print("pinState reset check: ");
+    Serial.print(pinState);
+    Serial.print("\n");
     for (int i = 0; i < 3; i++) {
-        if (digitalRead(inPins[i] == LOW)) {
+        if (digitalRead(inPins[i]) == HIGH) {
+          continue;
+        }
+        else if (digitalRead(inPins[i] == LOW)) {
             pinState |= pinMask[i];
         }
+    }
+    for (int i = 0; i < 3; i++) {
+        Serial.print("Pin ");
+        Serial.print(i);
+        Serial.print(" level: ");
+        Serial.print(digitalRead(inPins[i]));
+        Serial.print("\n");
     }
     Serial.print("\nCurrent pinState: ");
     Serial.print(pinState, BIN);

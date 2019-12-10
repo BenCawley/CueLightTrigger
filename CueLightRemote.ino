@@ -16,7 +16,6 @@ void setup() {
 void loop() {
     Serial.print("Loop ");
     Serial.print("\n");
-    delay(1000);
 
     channelCheck();
 }

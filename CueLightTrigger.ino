@@ -2,7 +2,7 @@
 
 void setup() {
     Serial.begin(9600);
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 6; i++) {
         pinMode(triggerPins[i], INPUT_PULLUP);
         if (i < 5) {
             pinMode(outPins[i], OUTPUT);

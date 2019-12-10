@@ -5,7 +5,7 @@ const int triggerPins[7] = {6, 7, 8, 9, 10, 11, 12};
 int previousState = 0;
 
 int relayRead() {
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 6; i++) {
         if (digitalRead(triggerPins[i]) == LOW) {
             return(i+1);
         }
