@@ -15,9 +15,6 @@ int relayRead() {
 
 void channelCheck() {
     int currentState = relayRead();
-    Serial.print("\nTrigger ");
-    Serial.print(currentState);
-    Serial.print("\n");
     if (currentState != previousState) {
         previousState = currentState;    
         switch (currentState) {
@@ -25,49 +22,42 @@ void channelCheck() {
                 digitalWrite(outPins[0], HIGH);
                 digitalWrite(outPins[1], HIGH);
                 digitalWrite(outPins[2], HIGH);
-                Serial.print("No Channel Triggered\n");
+
                 break;
             case 1:
                 digitalWrite(outPins[0], LOW);
                 digitalWrite(outPins[1], HIGH);
                 digitalWrite(outPins[2], HIGH);
-                Serial.print("Channel 1 Triggered\n");
                 break;
             case 2:
                 digitalWrite(outPins[0], HIGH);
                 digitalWrite(outPins[1], LOW);
                 digitalWrite(outPins[2], HIGH);
-                Serial.print("Channel 2 Triggered\n");
                 break;
             case 3:
                 digitalWrite(outPins[0], LOW);
                 digitalWrite(outPins[1], LOW);
                 digitalWrite(outPins[2], HIGH);
-                Serial.print("Channel 3 Triggered\n");
                 break;
             case 4:
                 digitalWrite(outPins[0], HIGH);
                 digitalWrite(outPins[1], HIGH);
                 digitalWrite(outPins[2], LOW);
-                Serial.print("Channel 4 Triggered\n");
                 break;
             case 5:
                 digitalWrite(outPins[0], LOW);
                 digitalWrite(outPins[1], HIGH);
                 digitalWrite(outPins[2], LOW);
-                Serial.print("Channel 5 Triggered\n");
                 break;
             case 6:
                 digitalWrite(outPins[0], HIGH);
                 digitalWrite(outPins[1], LOW);
                 digitalWrite(outPins[2], LOW);
-                Serial.print("Channel 6 Triggered\n");
                 break;
             case 7:
                 digitalWrite(outPins[0], LOW);
                 digitalWrite(outPins[1], LOW);
                 digitalWrite(outPins[2], LOW);
-                Serial.print("Channel 7 Triggered\n");
                 break;
         }
     }

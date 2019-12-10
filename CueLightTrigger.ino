@@ -1,7 +1,6 @@
 #include "triggerFunctions.h"
 
 void setup() {
-    Serial.begin(9600);
     for (int i = 0; i < 6; i++) {
         pinMode(triggerPins[i], INPUT_PULLUP);
         if (i < 5) {
@@ -14,6 +13,5 @@ void setup() {
 }
 
 void loop() {
-    Serial.print("Loop\n");
     channelCheck();
 }

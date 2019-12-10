@@ -1,8 +1,6 @@
 #include "remoteFunctions.h"
 
 void setup() {
-    Serial.begin(9600);
-    Serial.print("Remote Startup\n");
     for (int i = 0; i < 7; i++) {
         pinMode(inPins[i], INPUT_PULLUP);
         if (i < 2) {
@@ -14,8 +12,5 @@ void setup() {
 }
 
 void loop() {
-    Serial.print("Loop ");
-    Serial.print("\n");
-
     channelCheck();
 }
