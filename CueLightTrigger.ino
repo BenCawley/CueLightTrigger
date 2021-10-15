@@ -1,5 +1,6 @@
 #include "triggerFunctions.h"
 
+//Setup in and out pins
 void setup() {
     for (int i = 0; i < 6; i++) {
         pinMode(triggerPins[i], INPUT_PULLUP);
@@ -8,7 +9,7 @@ void setup() {
         }
     }
     for (int i = 0; i < 3; i++) {
-        digitalWrite(outPins[i], HIGH);
+        digitalWrite(outPins[i], HIGH); //Default output pins to null state (no channel)
     }
 }
 

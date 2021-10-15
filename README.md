@@ -1,7 +1,9 @@
 # CueLightTrigger
 A short embedded script to allow an arduino to interface with a tallyman tally system and trigger multiple camera mounted LEDs and monitor tally LEDs. The script consists of two sets of files, one for the trigger controller and one for the remotes, named accordingly. The trigger MCU is an arduino uno mounted in a control box to be placed in a central apparatus room, and the remote consists of an arduino mini pro mounted inside a Nuetrik Ethercon Coupler NE8FF, connected to each cat5 couplers pins. 
 
-The basic premise of scripts is that two pins over a cat5 interface carry a binary channel selection via pulling each pin from default HIGH to LOW (MSB, TTL, up to four channels). Each remote checks these channel pins and compares them to a four channel dip switch attached to the MCU. If the channel selection pins are pulled to the channel that corresponds to the pin selected on the dip switch, the remote MCU will turn on a red LED and close a contact connected to two pins on the other connector. 
+Currently the system supports up to 7 remotes, but is capable of 15 with modification. 
+
+The basic premise of scripts is that three pins over a cat5 cable carry a binary channel selection via pulling each pin from default HIGH to LOW (MSB, TTL, up to four channels). Each remote connects to this bus and checks these channel pins, comparing them to a four channel dip switch attached to the MCU. If the channel selection pins are pulled to the channel that corresponds to the pin selected on the dip switch, the remote MCU will turn on a red LED and close a contact connected to two pins on the opposite connector (labelled OUT) to tigger a tally light on a 3rd party device (this is controller by pin 10 of the mini pro).
 
 The full pinout is as follows:
 
@@ -26,4 +28,4 @@ Arduino Uno        Cat5         Pro Mini     Programming / Pass-Thru         LED
                     
 
 
-(Raw pin is fed from a seperate 12VDC PSU in the control box with the Uno)
+Raw pin is fed from a seperate 12VDC PSU in the control box with the Uno, as the mini pro has a voltage conver onboard to drop it down to 3.3v

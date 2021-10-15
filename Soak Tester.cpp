@@ -1,7 +1,7 @@
 //A short script running on another arduino to soak test the CueLightTrigger box inputs 
 
 int outPins[4] = {2, 3, 4, 5};
-int inPins = A0;
+int inPins = A0; //Floating analogue input to generate random number
 
 void setup() {
     Serial.begin(9600);
