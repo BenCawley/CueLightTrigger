@@ -11,13 +11,13 @@ Arduino Uno        Cat5         Pro Mini     Programming / Pass-Thru         LED
     Pin            Pin            Pins                 Pins                  Pins          Pins
 --------------------------------------------------------------------------------------------------
     GND             1              GND                 N/C
-    N/C             2              RAW                 N/C                          
-     2              3               2                  GND
-     3              4               3                  VCC
-    SDA             5              SCA                 RST
-    SCL             6              SCL                 N/C
+   (12V)            2              RAW                 N/C                          
+     2              3             2/GND                GND
+     3              4             3/RST                VCC
+    N/C             5              RST                 RST
+    N/C             6              10                  FWD*
     RST             7              RST                 RX
-     4              8               9                  TX
+    13              8               9                  TX
                                     8                                        POS
                                    GND                                       GND            
                                     4                                                       CH1
@@ -29,3 +29,4 @@ Arduino Uno        Cat5         Pro Mini     Programming / Pass-Thru         LED
 
 
 Raw pin is fed from a seperate 12VDC PSU in the control box with the Uno, as the mini pro has a voltage conver onboard to drop it down to 3.3v
+FWD* = Forward Tally to a 3rd party device like the tally light of a camera monitor

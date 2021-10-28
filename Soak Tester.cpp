@@ -3,8 +3,8 @@
 int outPins[4] = {2, 3, 4, 5};
 int inPins = A0; //Floating analogue input to generate random number
 
-void setup() {
-    Serial.begin(9600);
+void setup() { //Setting up inputs/outputs
+    Serial.begin(9600); 
     for (int i = 0; i < 4; i++) {
         pinMode(outPins[i], OUTPUT);
         digitalWrite(outPins[i], HIGH);
@@ -12,7 +12,7 @@ void setup() {
     pinMode(inPins, INPUT);
 }
 
-void loop() {
+void loop() { //Turn on a random channel at random interval between 0 and 5 seconds
     randomSeed(analogRead(inPins));
     int randNum = random(5);
     int randTime = random(100, 5000);
