@@ -2,24 +2,28 @@
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
-const int outPins[5] = {2, 3, 13, 4, 5}; //2, 3 & 13 are output bus relays, 4 & 5 are the I2C Bus
-const int triggerPins[7] = {6, 7, 8, 9, 10, 11, 12}; //Tallyman output relays 
+const int outPins[7] = {2, 3, 13, 4, 5, 18, 19}; //2, 3 & 13 are output bus relays, 4 & 5 are the status LEDs, 18 & 19 are the I2C Bus
+const int triggerPins[7] = {6, 7, 8, 9, 10, 11, 12}; //Tallyman output relays (arduino input)
 int previousState = 0;
-const int debugPin = 14;
+const int debugPin = 17;
 
 //Check debug switch, change display backlight state
 bool debugCheck() {
     if (digitalRead(debugPin) == LOW) {
         backlight();
+        digitalWrite(outPins[4], LOW);
+        digitalWrite(outPins[5], HIGH);
         return(true);
     }
     noBacklight();
+    digitalWrite(outPins[4], HIGH);
+    digitalWrite(outPins[5], LOW);
     return(false);
 }
 
 //Get state of input relays
 int relayRead() {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
         if (digitalRead(triggerPins[i]) == LOW) {
             return(i+1);
         }
@@ -28,11 +32,12 @@ int relayRead() {
 }
 
 //Depending on which input relay is active, adjust 3 bit output relays with a switch case
-void channelCheck(debugCheck) {
+void channelCheck() {
     int currentState = relayRead();
+    bool debugState = debugCheck();
     if (currentState != previousState) {
         previousState = currentState;
-        switch(debugCheck) {
+        switch(debugState) {
             case true:
                 switch (currentState) {
                     case 0:

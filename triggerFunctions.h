@@ -4,7 +4,7 @@
 
 LiquidCrystal_I2C lcd(0x26, 16, 2);
 
-extern const int outPins[5];
+extern const int outPins[7];
 extern const int triggerPins[7];
 extern int previousState;
 extern const int debugPin;

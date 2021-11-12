@@ -5,20 +5,18 @@
 //Setup in and out pins
 void setup() {
     pinMode(debugPin, INPUT_PULLUP);
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 7; i++) {
         pinMode(triggerPins[i], INPUT_PULLUP);
-        if (i < 5) {
-            pinMode(outPins[i], OUTPUT);
-        }
+        pinMode(outPins[i], OUTPUT);
     }
-    for (int i = 0; i < 3; i++) {
-        digitalWrite(outPins[i], HIGH); //Default output pins to null state (no channel)
+    for (int i = 0; i < 4; i++) {
+        digitalWrite(outPins[i], HIGH); //Default output relay pins to null state (no channel) and turns on the normal operation LED (4)
     }
-
+    
     lcd.begin();
     lcd.backlight();
 }
 
 void loop() {
-    channelCheck(debugCheck());
+    channelCheck();
 }

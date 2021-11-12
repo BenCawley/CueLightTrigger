@@ -7,7 +7,7 @@ The basic premise of scripts is that three pins over a cat5 cable carry a binary
 
 The full pinout is as follows:
 
-Arduino Uno        Cat5         Pro Mini     Programming / Pass-Thru         LED        Dip Switch
+Arduino Nano        Cat5         Pro Mini     Programming / Pass-Thru         LED        Dip Switch
     Pin            Pin            Pins                 Pins                  Pins          Pins
 --------------------------------------------------------------------------------------------------
     GND             1              GND                 N/C

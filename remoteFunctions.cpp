@@ -6,7 +6,7 @@ const int outPins[2] = {8, 10}; //8 = LED, 10 = forward tally trigger
 
 byte previousState = 0b000; //This is the off state, when non of the tallys are active
 
-const byte pinMask[3] = { //Mask to help set bits
+const byte pinMask[3] = { //Mask to help set channel bits
     0b001, 0b010, 0b100
 };
 
