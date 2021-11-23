@@ -12,7 +12,7 @@ void setup() {
     for (int i = 0; i < 4; i++) {
         digitalWrite(outPins[i], HIGH); //Default output relay pins to null state (no channel) and turns on the normal operation LED (4)
     }
-    
+    LiquidCrystal_I2C lcd(0x26, 16, 2);
     lcd.begin();
     lcd.backlight();
 }

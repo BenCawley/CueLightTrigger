@@ -1,4 +1,13 @@
 # CueLightTrigger
+
+To Do: 
+
+Get led working on soak tester - needs Blink Without Delay script implementing
+
+Rewrite interrupts for main unit and include bebounce code in interrupt handler
+
+Change labels!
+
 A short embedded script to allow an arduino to interface with a tallyman tally system and trigger multiple camera mounted LEDs and monitor tally LEDs. The script consists of two sets of files, one for the trigger controller and one for the remotes, named accordingly. The trigger MCU is an arduino uno mounted in a control box to be placed in a central apparatus room, and the remote consists of an arduino mini pro mounted inside a Nuetrik Ethercon Coupler NE8FF, connected to each cat5 couplers pins. 
 
 Currently the system supports up to 7 remotes, but is capable of 15 with modification. 
@@ -7,7 +16,7 @@ The basic premise of scripts is that three pins over a cat5 cable carry a binary
 
 The full pinout is as follows:
 
-Arduino Nano        Cat5         Pro Mini     Programming / Pass-Thru         LED        Dip Switch
+Arduino Uno        Cat5         Pro Mini     Programming / Pass-Thru         LED        Dip Switch
     Pin            Pin            Pins                 Pins                  Pins          Pins
 --------------------------------------------------------------------------------------------------
     GND             1              GND                 N/C
