@@ -6,6 +6,10 @@ const int randPin = A0; //Floating analogue input to generate random number
 const int switchPin = 2; //Interrupt pin for changing modes
 const int led = 10;
 volatile int mode = 0; //Keeps track of testing mode
+int flashCount = 0; //Keeps track of how many times the led has flashed per cycle
+unsigned long previousMillis = 0; //stores the last time the led was updated
+const long shortInt = 250; 
+const long longInt = 2000; //Timings for the led flashes
 
 void setup() { //Setting up inputs/outputs
     Serial.begin(9600); 
@@ -18,7 +22,7 @@ void setup() { //Setting up inputs/outputs
 
     pinMode(randPin, INPUT);
     pinMode(led, OUTPUT);
-    digitalWrite(led, HIGH);
+    digitalWrite(led, LOW);
     randomSeed(analogRead(randPin));
 }
 
@@ -59,16 +63,29 @@ void rapidLinearTest() {
     }   
 }
 
-//Short led blink function to display current mode
-void flash(int number) {
-    for (int i = 0; i < number+1; i++) {
-        digitalWrite(led, LOW);
-        delay(500);
-        digitalWrite(led, HIGH);
-        delay(1000);
-        digitalWrite(led, LOW);
-        delay(500);
-        digitalWrite(led, HIGH);
+//Check whether the led has flashed and trigger it to flash again based on time
+void flashCheck() {
+    if (flashCount = 0) {
+        flash(longInt);
+    }
+    else {
+        flash(shortInt;)
+    }
+}
+
+void flash(int interval) {
+    unsigned long currentMillis = millis();
+    if (currentMillis - previousMillis >= interval) {
+        //Save the last time you blinked the LED
+        previousMillis = currentMillis;
+
+        //If the LED is off turn it on and vice-versa:
+        digitalWrite(led, !digitalRead(led));
+        //Increment the count for number of flashes, if its more than the mode, reset count
+        flashCount++;
+        if (flashCount > mode) {
+            flashCount = 0;
+        }
     }
 }
 
@@ -82,7 +99,6 @@ void modeSet() {
         if (mode > 2) {
             mode = 0;
         }
-        flash(mode);
         Serial.print("Mode ");
         Serial.print(mode);
         Serial.print("\n");
@@ -102,4 +118,5 @@ void loop() {
             randomTest();
             break;
     }
+    flashCheck();
 }
